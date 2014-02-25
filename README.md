@@ -12,41 +12,34 @@ Ambitious goal: store analytics about every API request in a time series databas
 
 Let's go crazy.
 
-### NodeJS
+### [NodeJS](http://nodejs.org)
 
 Asynchronous. Fast. JavaScripty.
 
-### koa
+### [koa](https://github.com/koajs/koa)
 
 Hate callbacks? Me too. Hi, [Harmony](http://wiki.ecmascript.org/doku.php?id=harmony:generators)!
 
-### RethinkDB
+### [redis](http://redis.io)
+
+Cache all the things.
+
+### [RethinkDB](http://www.rethinkdb.com) (future-land)
 
 Like MongoDB, but with less suck. Also, a sweet admin interface.
 
-### InfluxDB
+### [InfluxDB](http://influxdb.org) (future-land)
 
 Time series database. Has a penchant for analytics.
 
 ## Requirements
 
-1. Download and install a bleeding-edge version of [NodeJS](http://nodejs.org/dist/v0.11.9/)
-1. Download and install [RethinkDB](http://www.rethinkdb.com/docs/install/)
-1. Download and install [InfluxDB](http://influxdb.org/download/)
+### NodeJS
+1. Download and install a bleeding-edge version of NodeJS e.g. [0.11.9](http://nodejs.org/dist/v0.11.9/)
 
-### RethinkDB
+### Prestige
 
-1. `rethinkdb`
-1. [RethinkDB admin](http://localhost:8080/)
-
-### InfluxDB
-
-1. `influxdb -config=/usr/local/etc/influxdb.conf`
-1. [InfluxDB admin](http://localhost:8083/)
-
-### Install prestige
-
-1. `git clone git://prestige`
+1. `git clone git@github.com:adamghill/prestige.git`
 1. `cd prestige`
 1. `npm install`
 1. `npm install nodemon -g`
@@ -60,7 +53,19 @@ Time series database. Has a penchant for analytics.
 1. `cd src`
 1. `redis-server`
 
-### Install tasseo
+## Future-land requirements
+
+### RethinkDB
+
+1. `rethinkdb`
+1. [RethinkDB admin](http://localhost:8080/)
+
+### InfluxDB
+
+1. `influxdb -config=/usr/local/etc/influxdb.conf`
+1. [InfluxDB admin](http://localhost:8083/)
+
+### Tasseo
 
 1. `git clone git@github.com:obfuscurity/tasseo.git`
 1. [Install locally](https://github.com/obfuscurity/tasseo#local)
