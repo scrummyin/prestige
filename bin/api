@@ -1,0 +1,47 @@
+#!/usr/bin/env node --harmony
+
+/**
+ * Module dependencies.
+ */
+
+var program = require('commander')
+  , cluster = require('cluster')
+  , http = require('http')
+  , numCPUs = require('os').cpus().length
+  , api = require('..')
+;
+
+program
+  .option('-H, --host <host>', 'specify the host [0.0.0.0]', '0.0.0.0')
+  .option('-p, --port <port>', 'specify the port [4000]', '4000')
+  .option('-b, --backlog <size>', 'specify the backlog size [511]', '511')
+  .option('-r, --ratelimit <n>', 'ratelimit requests [2500]', '2500')
+  .option('-d, --ratelimit-duration <ms>', 'ratelimit duration [1h]', '1h')
+  .parse(process.argv);
+
+var app = api({
+  ratelimit: ~~program.ratelimit,
+  duration: ~~program.ratelimitDuration
+});
+
+var doCluster = false
+
+if (!doCluster) {
+  app.listen(program.port, program.host, ~~program.backlog);
+  console.log('Listening on %s:%s', program.host, program.port);
+} else {
+  if (cluster.isMaster) {
+    for (var i = 0; i < numCPUs; i++) {
+      var worker = cluster.fork();
+      console.log('Worker %s started', worker.process.pid);
+    }
+    console.log('Listening on %s:%s', program.host, program.port);
+
+    cluster.on('exit', function(worker, code, signal) {
+      console.log('Worker ' + worker.process.pid + ' died');
+    });
+  } else {
+    app.listen(program.port, program.host, ~~program.backlog);
+  }
+}
+

@@ -1,0 +1,34 @@
+{
+  "name": "prestige",
+  "version": "0.0.1",
+  "repository": "themotleyfool/prestige",
+  "description": "API killer",
+  "keywords": [
+    "api"
+  ],
+  "dependencies": {
+    "commander": "~2.1.0",
+    "co-body": "0.0.1",
+    "debug": "*",
+    "koa": "0.5.0",
+    "koa-compose": "2.2.0",
+    "koa-compress": "1.0.3",
+    "koa-logger": "1.2.0",
+    "koa-mount": "1.2.3",
+    "koa-response-time": "~1.0.1",
+    "koa-request": "1.0.0",
+    "koa-router": "3.0.2",
+    "ms": "0.6.2",
+    "ratelimiter": "1.0.0",
+    "redis": "~0.10.0",
+    "request": "2.34.0",
+    "thunkify": "0.0.1",
+    "underscore": "1.6.0"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*",
+    "supertest": "~0.8.2"
+  },
+  "license": "MIT"
+}
