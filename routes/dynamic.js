@@ -2,22 +2,23 @@ var debug = require('debug')('prestige')
   , mount = require('koa-mount')
   , compose = require('koa-compose')
   , _ = require('underscore')
-  , pipelines = require('../pipelines/')
-  
+  , pipes = require('../pipes')
+
 
 
 function getRouteMiddleware(route) {
-  var inputGenerators = []
-  var outputGenerators = []
-  
-  var pipelineGenerators = inputGenerators.concat(pipelines.proxy(route))
-  pipelineGenerators.concat(outputGenerators)
+  var inputPipes = []
+  var outputPipes = []
+
+  var pipeline = inputPipes.concat(pipes.proxy(route))
+  pipeline.concat(outputPipes)
 
   Object.keys(route.pipeline).forEach(function(key) {
-    pipelineGenerators.push(pipelines[key](route))
+    // Pass route.pipeline into pipeline fn, not route?
+    pipeline.push(pipes[key](route))
   })
 
-  var middleware = compose(pipelineGenerators)
+  var middleware = compose(pipeline)
   return middleware
 }
 
@@ -26,9 +27,9 @@ exports.load = function(app, router) {
   var config = require('../config')
 
   config.applications.forEach(function(application) {
-    if ((!application.startDate || application.startDate < Date.now()) 
+    if ((!application.startDate || application.startDate < Date.now())
       && (!application.endDate || application.endDate > Date.now())) {
-      
+
       var dynamicRoute = new router()
 
       application.routes.forEach(function(route) {

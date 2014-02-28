@@ -1,4 +1,4 @@
-var pipelines = {
+var pipes = {
 	'responseTime': require('./responseTime'),
 	'ratelimit': require('./ratelimit'),
 	'cache': require('./cache'),
@@ -6,4 +6,4 @@ var pipelines = {
 	// compress
 }
 
-module.exports = pipelines
+module.exports = pipes

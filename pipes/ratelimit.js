@@ -1,4 +1,4 @@
-var debug = require('debug')('rateLimit')
+var debug = require('debug')('ratelimit')
   , Limiter = require('ratelimiter')
   , thunkify = require('thunkify')
   , ms = require('ms')
@@ -9,11 +9,11 @@ module.exports = function(route) {
   return function *(next) {
     // https://github.com/koajs/ratelimit/blob/master/index.js
     var id = this.ip;
-    
+
     // initialize limiter
-    var limiter = new Limiter({ 
+    var limiter = new Limiter({
       id: id,
-      __proto__: { 
+      __proto__: {
         max: route.pipeline.ratelimit.max,
         duration: route.pipeline.ratelimit.duration,
         db: redis.createClient()
