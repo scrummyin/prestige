@@ -16,7 +16,14 @@ var config = {
         ratelimit: {
           max: 1000,
           duration: 1000
-        }
+        },
+        compress: {
+          filter: function(content_type) {
+            return /text|json/i.test(content_type)
+          },
+          threshold: 2000,
+          flush: require('zlib').Z_SYNC_FLUSH
+        },
       },
     }],
     startDate: null,
