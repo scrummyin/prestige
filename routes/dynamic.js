@@ -6,18 +6,13 @@ var debug = require('debug')('prestige')
 
 
 function getRouteMiddleware(route) {
-  var inputPipes = []
-  var outputPipes = []
-
-  var pipeline = inputPipes.concat(pipes.proxy(route))
-  pipeline.concat(outputPipes)
+  var pipelineFunctions = []
 
   Object.keys(route.pipeline).forEach(function(key) {
-    // Pass route.pipeline into pipeline fn, not route?
-    pipeline.push(pipes[key](route))
+    pipelineFunctions.push(pipes[key](route))
   })
 
-  var middleware = compose(pipeline)
+  var middleware = compose(pipelineFunctions)
   return middleware
 }
 
@@ -33,8 +28,6 @@ exports.load = function(app, router) {
 
       application.routes.forEach(function(route) {
         route.pipeline = _.defaults(route.pipeline, application.pipeline) || {}
-        route.domain = route.domain || application.domain || config.domain || ''
-
         dynamicRoute.get(route.source, getRouteMiddleware(route))
       })
 
