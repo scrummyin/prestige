@@ -1,10 +1,20 @@
 var debug = require('debug')('proxy')
  , request = require('koa-request')
 
+
 module.exports = function(route) {
   return function *(next) {
     var url = route.pipeline.request.destination
-    console.log('Request ' + url)
+    var params = this.params
+
+    var matches = url.match(/{\S+}/)
+
+    if (matches) {
+      matches.forEach(function(m) {
+        var paramsKey = m.replace('{', '').replace('}', '');
+        url = url.replace(m, params[paramsKey])
+      })
+    }
 
     var options = {
       url: url,
