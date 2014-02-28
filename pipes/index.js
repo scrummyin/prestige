@@ -2,8 +2,8 @@ var pipes = {
 	'responseTime': require('./responseTime'),
 	'ratelimit': require('./ratelimit'),
 	'cache': require('./cache'),
-	'proxy': require('./proxy'),
-	// compress
+	'request': require('./request'),
+	'compress': require('./compress')
 }
 
 module.exports = pipes

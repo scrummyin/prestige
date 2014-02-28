@@ -3,8 +3,8 @@ var debug = require('debug')('proxy')
 
 module.exports = function(route) {
   return function *(next) {
-    var url = route.domain + route.destination
-    console.log('Proxying ' + url)
+    var url = route.pipeline.request.destination
+    console.log('Request ' + url)
 
     var options = {
       url: url,
