@@ -1,8 +1,9 @@
 var responseTime = require('koa-response-time')
   , logger = require('koa-logger')
   , router = require('koa-router')
+  , serve = require('koa-static')
   , koa = require('koa')
-;
+
 
 var env = process.env.NODE_ENV || 'development';
 
@@ -15,6 +16,8 @@ function api(opts) {
   }
 
   app.use(responseTime());
+
+  app.use(serve('assets'));
 
   app.use(router(app))
   require('./routes/admin').load(app, router)
