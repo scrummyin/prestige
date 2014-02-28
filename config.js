@@ -8,6 +8,7 @@ var config = {
       startDate: null,
       endDate: null,
       pipeline: {
+        verbs: {allow: ['GET']},
         cache: {prefix: "test", timeout: 80000},
         ratelimit: {
           max: 1000,
@@ -29,6 +30,7 @@ var config = {
     endDate: null,
     pipeline: {
       cache: {},
+      verbs: {deny: ['DELETE', 'OPTIONS']},
       // ratelimit: {
       //   max: 0,
       //   duration: 0,

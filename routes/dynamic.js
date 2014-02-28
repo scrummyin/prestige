@@ -28,7 +28,7 @@ exports.load = function(app, router) {
 
       application.routes.forEach(function(route) {
         route.pipeline = _.defaults(route.pipeline, application.pipeline) || {}
-        dynamicRoute.get(route.source, getRouteMiddleware(route))
+        dynamicRoute.all(route.source, getRouteMiddleware(route))
       })
 
       app.use(mount(application.path, dynamicRoute.middleware()))
