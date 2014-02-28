@@ -25,6 +25,36 @@ var config = {
           destination: 'http://api.openweathermap.org/data/2.5/weather?q=London,uk',
         },
       },
+    }, {
+      source: '/validateQuerystring',
+      startDate: null,
+      endDate: null,
+      pipeline: {
+        validateQuerystring: {
+          key: 'apikey',
+          val: 'asdf',
+        },
+        request: {
+          destination: 'http://api.openweathermap.org/data/2.5/weather?q=NewYork,US',
+        },
+      },
+    }, {
+      source: '/:query',
+      startDate: null,
+      endDate: null,
+      pipeline: {
+        cache: {},
+        ratelimit: {
+          max: 1000,
+          duration: 1000
+        },
+        compress: {
+          threshold: 2000
+        },
+        request: {
+          destination: 'http://api.openweathermap.org/data/2.5/weather?q={query}',
+        },
+      },
     }],
     startDate: null,
     endDate: null,

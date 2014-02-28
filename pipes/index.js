@@ -5,6 +5,7 @@ var pipes = {
 	'request': require('./request'),
 	'compress': require('./compress'),
 	'verbs': require('./verbs')
+	'validateQuerystring': require('./validateQuerystring'),
 }
 
 module.exports = pipes

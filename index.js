@@ -23,7 +23,7 @@ function api(opts) {
   require('./routes/admin').load(app, router)
   require('./routes/dynamic').load(app, router)
 
-  return app;
+  return require('koa-qs')(app)
 }
 
 module.exports = api;
