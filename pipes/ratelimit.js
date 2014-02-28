@@ -8,7 +8,7 @@ var debug = require('debug')('ratelimit')
 module.exports = function(route) {
   return function *(next) {
     // https://github.com/koajs/ratelimit/blob/master/index.js
-    var id = this.ip;
+    var id = this.ip + route.domain + route.destination;
 
     // initialize limiter
     var limiter = new Limiter({

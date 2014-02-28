@@ -5,7 +5,6 @@ var debug = require('debug')('prestige')
   , pipes = require('../pipes')
 
 
-
 function getRouteMiddleware(route) {
   var inputPipes = []
   var outputPipes = []
