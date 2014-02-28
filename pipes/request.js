@@ -16,6 +16,8 @@ module.exports = function(route) {
       })
     }
 
+    console.log('Request: ', url)
+
     var options = {
       url: url,
       headers: { 'User-Agent': 'prestige==0.0.1' }
