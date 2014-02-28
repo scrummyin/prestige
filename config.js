@@ -35,11 +35,7 @@ var config = {
           duration: 1000
         },
         compress: {
-          filter: function(content_type) {
-            return /text|json/i.test(content_type)
-          },
-          threshold: 2000,
-          flush: require('zlib').Z_SYNC_FLUSH
+          threshold: 2000
         },
         request: {
           destination: 'http://api.openweathermap.org/data/2.5/weather?q={query}',
