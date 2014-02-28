@@ -3,7 +3,8 @@ var pipes = {
 	'ratelimit': require('./ratelimit'),
 	'cache': require('./cache'),
 	'request': require('./request'),
-	'compress': require('./compress')
+	'compress': require('./compress'),
+	'validateQuerystring': require('./validateQuerystring'),
 }
 
 module.exports = pipes

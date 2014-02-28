@@ -25,6 +25,19 @@ var config = {
         },
       },
     }, {
+      source: '/validateQuerystring',
+      startDate: null,
+      endDate: null,
+      pipeline: {
+        validateQuerystring: {
+          key: 'apikey',
+          val: 'asdf',
+        },
+        request: {
+          destination: 'http://api.openweathermap.org/data/2.5/weather?q=NewYork,US',
+        },
+      },
+    }, {
       source: '/:query',
       startDate: null,
       endDate: null,
