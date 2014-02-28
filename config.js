@@ -8,7 +8,7 @@ var config = {
       startDate: null,
       endDate: null,
       pipeline: {
-        cache: {},
+        cache: {prefix: "test", timeout: 80000},
         ratelimit: {
           max: 1000,
           duration: 1000
